@@ -8,11 +8,11 @@ execute:
   message: false
 
 book:
-  title: "YOUR PROJECT TITLE"
+  title: "Weapons and Wealth: Exploring Global Military Spending and the Arms Trade"
   author:
-    - AUTHOR1 (UNI1)
-    - AUTHOR2 (UNI2)
-  repo-url: https://github.com/YOUR_GITHUB_ACCOUNT/REPO_NAME
+    - Shreyas Kamath (UNI1)
+    - Shubham Pareek (p4553)
+  repo-url: https://github.com/ShreyasK412/Weapons-and-Wealth
   date: today
   page-footer:
     right: |
