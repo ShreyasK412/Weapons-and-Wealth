@@ -1,1 +1,3 @@
 # Introduction
+
+Military spending reveals how nations perceive threats and prioritize security. In 2024, global defense spending exceeded $2.4 trillion, yet the burden falls unevenly: some countries devote 10% of GDP to military budgets while others spend less than 1%. We explore three questions: How does military expenditure relate to national wealth? Do regional rivals like India-Pakistan and Saudi Arabia-Iran exhibit synchronized spending patterns? And how do major conflicts correlate with defense budget changes in distant nations? Using the SIPRI Military Expenditure Database (1949-2024) and Arms Transfers Database (1950-present), we examine relationships between spending and economic capacity, regional competition, and global conflicts.
