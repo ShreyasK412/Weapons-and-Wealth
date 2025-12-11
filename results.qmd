@@ -1,5 +1,8 @@
 ---
 title: "Results"
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -30,9 +33,7 @@ rq2_data <- read_csv("data/clean/rq2_arms_races.csv")
 
 ## RQ1: How Does Military Spending Relate to National Wealth?
 
-
 ### Wealth vs. Defense Burden
-
 
 ```{r}
 
@@ -165,27 +166,35 @@ ggplot(rq1_scatter, aes(x = gdp_per_capita_usd, y = spending_pct)) +
   guides(color = guide_legend(nrow = 1, override.aes = list(size = 4)))
 ```
 
+The main finding is clear: wealth explains almost nothing (R² ≈ 0). The
+nearly flat trend line confirms that a country's GDP per capita has
+little bearing on its defense burden. Instead, regional clustering
+dominates — Middle Eastern countries (yellow) sit high regardless of
+wealth, while European nations (pink) cluster low. Notable outliers tell
+the real story:
 
+Ukraine is absent from this graph — at 37% of GDP, its wartime spending
+would distort the entire scale. This single datapoint illustrates how
+existential threats override economic considerations entirely. Algeria
+and Morocco represent North Africa's quiet arms race. Algeria, flush
+with hydrocarbon revenues, allocated 21% of all government expenditure
+to defense in 2024 — the highest share of any African nation. Morocco,
+despite two years of decline, increased spending by 2.6% in 2024.
+Together they account for 90% of North African military spending. Saudi
+Arabia and Russia both spend 6-7% despite vastly different wealth levels
+(\$30K vs \$12K GDP per capita), driven by regional power ambitions
+rather than economic capacity. Japan, Germany, and Ireland — all wealthy
+democracies — cluster below 2%, reflecting post-WWII constraints,
+alliance reliance, or neutrality.
 
+The NATO 2% benchmark (dashed line) highlights a policy reality: many
+European allies now face pressure to meet this target, shifting from
+"aspirational" to "minimum" after Russia's 2022 invasion.
 
-The main finding is clear: wealth explains almost nothing (R² ≈ 0). The nearly flat trend line confirms that a country's GDP per capita has little bearing on its defense burden. Instead, regional clustering dominates — Middle Eastern countries (yellow) sit high regardless of wealth, while European nations (pink) cluster low.
-Notable outliers tell the real story:
-
-Ukraine is absent from this graph — at 37% of GDP, its wartime spending would distort the entire scale. This single datapoint illustrates how existential threats override economic considerations entirely.
-Algeria and Morocco represent North Africa's quiet arms race. Algeria, flush with hydrocarbon revenues, allocated 21% of all government expenditure to defense in 2024 — the highest share of any African nation. Morocco, despite two years of decline, increased spending by 2.6% in 2024. Together they account for 90% of North African military spending.
-Saudi Arabia and Russia both spend 6-7% despite vastly different wealth levels ($30K vs $12K GDP per capita), driven by regional power ambitions rather than economic capacity.
-Japan, Germany, and Ireland — all wealthy democracies — cluster below 2%, reflecting post-WWII constraints, alliance reliance, or neutrality.
-
-The NATO 2% benchmark (dashed line) highlights a policy reality: many European allies now face pressure to meet this target, shifting from "aspirational" to "minimum" after Russia's 2022 invasion.
-
-Source : 
+Source :
 https://www.sipri.org/sites/default/files/2025-04/2504_fs_milex_2024.pdf
 
-
 ### Top Military Spenders Over Time
-
-
-
 
 ```{r}
 
@@ -297,18 +306,20 @@ ggplot(rank_data, aes(x = year, y = rank, color = country, group = country)) +
   )
 ```
 
+-   Observation The bump chart reveals three decades of shifting
+    military power. The US holds an unbroken #1 position throughout —
+    the only constant in a turbulent landscape.Key movements:
 
-
-
-* Observation 
-The bump chart reveals three decades of shifting military power. The US holds an unbroken #1 position throughout — the only constant in a turbulent landscape.Key movements:
-
-China's rise is the defining trend: from #3 in 1990 to a secure #2 by 2005, where it has remained unchallenged for two decades
-Russia's collapse and recovery — from #2 in 1990 to #10 by 2000 as the post-Soviet economy imploded, then climbing back to #3 by 2024 (now spending 7.1% of GDP on military)
-Germany's quiet surge — jumped from #7 to #4 in 2024 after decades of restraint, now Central/Western Europe's largest spender for the first time since reunification
-India's steady climb — from #11 to #4-6 range, reflecting its emergence as a major power
-Ukraine's dramatic appearance — invisible on this chart until 2022, now #8 globally with spending at 34% of GDP
-
+China's rise is the defining trend: from #3 in 1990 to a secure #2 by
+2005, where it has remained unchallenged for two decades Russia's
+collapse and recovery — from #2 in 1990 to #10 by 2000 as the
+post-Soviet economy imploded, then climbing back to #3 by 2024 (now
+spending 7.1% of GDP on military) Germany's quiet surge — jumped from #7
+to #4 in 2024 after decades of restraint, now Central/Western Europe's
+largest spender for the first time since reunification India's steady
+climb — from #11 to #4-6 range, reflecting its emergence as a major
+power Ukraine's dramatic appearance — invisible on this chart until
+2022, now #8 globally with spending at 34% of GDP
 
 ```{r}
 library(tidyverse)
@@ -406,27 +417,30 @@ ggplot(rq1_share_full, aes(x = year, y = share, fill = country_group)) +
     axis.text.y = element_text(color = "grey50")
   )
 ```
-This stacked area chart reveals the fundamental structure of global military power — and how little it has changed despite apparent turbulence.
-The US dominance story:
 
-Peaked near 50% during the post-9/11 wars in Iraq and Afghanistan (~2010)
-Declined to ~37% by 2024 — but this is relative decline, not absolute (US spending reached $997B in 2024)
-Still allocates 3.2× more than China, the #2 spender
+This stacked area chart reveals the fundamental structure of global
+military power — and how little it has changed despite apparent
+turbulence. The US dominance story:
+
+Peaked near 50% during the post-9/11 wars in Iraq and Afghanistan
+(\~2010) Declined to \~37% by 2024 — but this is relative decline, not
+absolute (US spending reached \$997B in 2024) Still allocates 3.2× more
+than China, the #2 spender
 
 China's expansion:
 
-Grew from ~2% (1990) to ~12-15% (2024)
-30 consecutive years of growth — the longest unbroken streak in SIPRI's database
-The expanding red band is the single most important structural shift in this chart
+Grew from \~2% (1990) to \~12-15% (2024) 30 consecutive years of growth
+— the longest unbroken streak in SIPRI's database The expanding red band
+is the single most important structural shift in this chart
 
 The "Rest of World" squeeze:
 
-The grey band shrunk from ~30% to ~20%
-As US and China dominate, everyone else's relative share declines
-European allies, despite recent increases, remain a thin collective band
+The grey band shrunk from \~30% to \~20% As US and China dominate,
+everyone else's relative share declines European allies, despite recent
+increases, remain a thin collective band
 
-Bottom line: Two countries now control nearly half of global military spending
-
+Bottom line: Two countries now control nearly half of global military
+spending
 
 ```{r}
 library(tidyverse)
@@ -520,10 +534,11 @@ ggplot(rq1_timeseries_data, aes(x = year, y = spending_billions, color = country
   )
 ```
 
-US spending dominates the globe; China and Russia show steady growth vs. European stagnation.
+US spending dominates the globe; China and Russia show steady growth vs.
+European stagnation.
 
-This is why NATO's 2% target matters — European allies collectively spend ~$454B, but fragmented across 30+ countries.
-
+This is why NATO's 2% target matters — European allies collectively
+spend \~\$454B, but fragmented across 30+ countries.
 
 ### Regional Defense Burden Comparison
 
@@ -563,27 +578,27 @@ ggplot(rq1_regional, aes(x = median_spending, y = region_custom)) +
         panel.grid.major.y = element_blank())
 ```
 
-
-
 Clear regional hierarchy:
 
-Middle East (Levant & Gulf) tops the chart at ~4-5% median — conflict zones and oil-funded militaries
-North Africa (Algeria, Morocco rivalry) at ~3.5%
-Europe at ~1.5% — below NATO's 2% guideline (though this is changing rapidly post-2022)
-Americas lowest at ~1% — the US skews this; Latin America spends very little
+Middle East (Levant & Gulf) tops the chart at \~4-5% median — conflict
+zones and oil-funded militaries North Africa (Algeria, Morocco rivalry)
+at \~3.5% Europe at \~1.5% — below NATO's 2% guideline (though this is
+changing rapidly post-2022) Americas lowest at \~1% — the US skews this;
+Latin America spends very little
 
 The wide IQR bars matter:
 
-Middle East has the widest spread — from wealthy Gulf states to war-torn nations
-Europe's narrow band reflects convergence toward NATO norms
-Africa's wide spread reflects extreme diversity (South Africa cutting, Sahel juntas increasing)
+Middle East has the widest spread — from wealthy Gulf states to war-torn
+nations Europe's narrow band reflects convergence toward NATO norms
+Africa's wide spread reflects extreme diversity (South Africa cutting,
+Sahel juntas increasing)
 
-The NA category likely captures countries with missing or unreliable data.
-Key insight: Regional threat environment — not wealth — determines military burden. The Middle East spends 3-4× the share of GDP that the Americas do, regardless of income levels.
+The NA category likely captures countries with missing or unreliable
+data. Key insight: Regional threat environment — not wealth — determines
+military burden. The Middle East spends 3-4× the share of GDP that the
+Americas do, regardless of income levels.
 
 ### Regional Trends Over Time
-
-
 
 ```{r rq1-regional-ts}
 key_regions <- c("Europe", "Asia", "Americas", "Middle East (Gulf)", "North Africa")
@@ -621,9 +636,6 @@ ggplot(rq1_regional_ts, aes(x = year, y = median_spending, color = region_label)
         plot.subtitle = element_text(size = 11, color = "grey40")) +
   guides(color = guide_legend(nrow = 1))
 ```
-
-
-
 
 ```{r}
 
@@ -752,159 +764,42 @@ ggplot(bubble_data, aes(x = gdp_per_capita_usd, y = spending_pct)) +
 
 ```
 
-The three-dimensional view reveals what flat charts hide.This bubble chart encodes three variables: GDP per capita (X), military burden (Y), and absolute spending (bubble size). The result exposes fundamental asymmetries:
-Ukraine sits alone in the upper-left — poor (~$5K GDP/capita) but allocating an extraordinary 37% of GDP to defense. Its medium-sized bubble reveals the limits of burden: even at wartime sacrifice levels, absolute spending remains constrained by economic size.
+The three-dimensional view reveals what flat charts hide.This bubble
+chart encodes three variables: GDP per capita (X), military burden (Y),
+and absolute spending (bubble size). The result exposes fundamental
+asymmetries: Ukraine sits alone in the upper-left — poor (\~\$5K
+GDP/capita) but allocating an extraordinary 37% of GDP to defense. Its
+medium-sized bubble reveals the limits of burden: even at wartime
+sacrifice levels, absolute spending remains constrained by economic
+size.
 
-China's massive bubble dominates despite sitting at just ~2% burden — wealth enables military power without economic strain. Compare to Pakistan: similar burden (~3%) but a tiny bubble because the underlying economy is far smaller.
+China's massive bubble dominates despite sitting at just \~2% burden —
+wealth enables military power without economic strain. Compare to
+Pakistan: similar burden (\~3%) but a tiny bubble because the underlying
+economy is far smaller.
 
-Saudi Arabia and Israel — both wealthy AND high-burden — occupy the upper-right quadrant. These are countries that can afford to sacrifice heavily.
+Saudi Arabia and Israel — both wealthy AND high-burden — occupy the
+upper-right quadrant. These are countries that can afford to sacrifice
+heavily.
 
-The NATO cluster (Germany, France, UK) shows moderate wealth, low burden (~2%), but substantial bubbles — collective alliance spending substitutes for individual sacrifice.
+The NATO cluster (Germany, France, UK) shows moderate wealth, low burden
+(\~2%), but substantial bubbles — collective alliance spending
+substitutes for individual sacrifice.
 
-Russia's bubble is larger than its GDP/capita (~$12K) would suggest because 7% burden on a large economy still generates significant absolute spending.
-Key insight: Burden measures sacrifice; bubble size measures actual military capacity. Pakistan sacrifices more than China (higher % GDP) but has far less military power.
+Russia's bubble is larger than its GDP/capita (\~\$12K) would suggest
+because 7% burden on a large economy still generates significant
+absolute spending. Key insight: Burden measures sacrifice; bubble size
+measures actual military capacity. Pakistan sacrifices more than China
+(higher % GDP) but has far less military power.
 
-```{r}
-library(tidyverse)
-library(scales)
-library(ggrepel)
-
-# 1. Define Groups & Filter Data (Fixed Logic)
-# We assign groups FIRST, then filter out NA rows. This prevents missing countries.
-trajectory_data_v2 <- rq1_data |>
-  filter(year >= 2000) |>
-  mutate(
-    conflict_group = case_when(
-      country %in% c("Russia", "Ukraine") ~ "Russia-Ukraine War",
-      country %in% c("Armenia", "Azerbaijan") ~ "Caucasus Conflict",
-      country %in% c("Israel", "Iran", "Saudi Arabia") ~ "Middle East Tensions",
-      country %in% c("India", "Pakistan") ~ "South Asia Rivalry",
-      country %in% c("China", "United States of America") ~ "Great Power Competition",
-      TRUE ~ NA_character_ # Mark everyone else as NA
-    )
-  ) |>
-  filter(!is.na(conflict_group)) |> # Keep only the countries in our groups
-  filter(!is.na(gdp_per_capita_usd) & !is.na(spending_pct_gdp)) |>
-  mutate(spending_pct = spending_pct_gdp * 100)
-
-# 2. Get Start and End Points for Visualization
-start_points <- trajectory_data_v2 |>
-  group_by(country) |>
-  filter(year == min(year)) |>
-  ungroup()
-
-endpoints_v2 <- trajectory_data_v2 |>
-  group_by(country) |>
-  filter(year == max(year)) |>
-  ungroup()
-
-# 3. Define Semantic Colors (Adversaries in contrasting colors)
-custom_colors <- c(
-  "United States of America" = "#2166AC", # Blue
-  "China"                    = "#B2182B", # Red
-  "Russia"                   = "#D6604D", # Light Red
-  "Ukraine"                  = "#FFD92F", # Yellow/Gold
-  "Israel"                   = "#4393C3", # Light Blue
-  "Iran"                     = "#1B7837", # Green
-  "Saudi Arabia"             = "#762A83", # Purple
-  "India"                    = "#F4A582", # Orange
-  "Pakistan"                 = "#92C5DE", # Muted Blue
-  "Armenia"                  = "#C51B7D", # Pink
-  "Azerbaijan"               = "#4D9221"  # Dark Green
-)
-
-# 4. Create the Plot
-ggplot(trajectory_data_v2, aes(x = gdp_per_capita_usd, y = spending_pct, color = country)) +
-  
-  # A. The Paths (Arrows)
-  geom_path(
-    aes(group = country),
-    linewidth = 1.2,
-    alpha = 0.8,
-    arrow = arrow(length = unit(0.3, "cm"), type = "closed", ends = "last")
-  ) +
-  
-  # B. Start Points (Hollow circles to show where they started in 2000)
-  geom_point(data = start_points, size = 2, shape = 21, fill = "white", stroke = 1.5) +
-  
-  # C. End Labels (Text)
-  geom_text_repel(
-    data = endpoints_v2,
-    aes(label = country),
-    size = 3.5,
-    fontface = "bold",
-    bg.color = "white", # Adds a tiny white halo for readability
-    bg.r = 0.15,
-    box.padding = 0.4
-  ) +
-  
-  # D. Scales & Facets
-  facet_wrap(~conflict_group, scales = "free", ncol = 2) +
-  
-  scale_x_log10(
-    labels = label_dollar(prefix = "$", suffix = "k", scale = 0.001),
-    breaks = c(1000, 5000, 10000, 50000)
-  ) +
-  scale_y_continuous(labels = label_percent(scale = 1)) +
-  scale_color_manual(values = custom_colors) +
-  
-  # E. Theme & Labels
-  labs(
-    title = "Conflict Trajectories: Wealth vs. Militarization (2000-2023)",
-    subtitle = "Arrows trace the path from 2000 (hollow dot) to 2023 (arrowhead)",
-    x = "GDP per Capita (log scale)",
-    y = "Military Burden (% of GDP)",
-    caption = "Source: SIPRI & World Bank"
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(face = "bold", size = 16),
-    plot.subtitle = element_text(color = "grey40", margin = margin(b = 15)),
-    strip.text = element_text(face = "bold", size = 12, hjust = 0),
-    strip.background = element_rect(fill = "grey95", color = NA), # Light grey header box
-    panel.border = element_rect(color = "grey80", fill = NA), # Box around plots
-    panel.grid.minor = element_blank()
-  )
-```
-
-    
-This faceted trajectory plot shows how countries moved through wealth-spending space over 23 years. The hollow dot marks 2000; the arrowhead marks 2023.Caucasus Conflict:
-
-Both Armenia and Azerbaijan moved RIGHT (got richer) and UP (increased burden)
-They track each other closely — classic arms race dynamics
-Azerbaijan's oil wealth enabled faster rightward movement
-Great Power Competition:
-
-China's trajectory is almost purely horizontal — massive wealth increase while maintaining ~2% burden
-The US moved right (richer) with slight upward drift — burden increased post-9/11, then stabilized
-The gap between them narrowed in wealth terms, but both maintained similar burdens
-Middle East Tensions:
-
-Israel's dramatic upward spike (recent) reflects Gaza war
-Saudi Arabia moved RIGHT then DOWN — got richer, reduced burden from peak oil-price years
-Iran remained relatively flat — sanctions constrained both wealth and military growth
-Russia-Ukraine War:
-
-Ukraine's near-vertical spike post-2022 is unprecedented — burden jumped from ~4% to 34% with minimal wealth change
-Russia shows two trajectories (possibly data issues) but clear rightward-then-upward movement
-South Asia Rivalry:
-
-Both India and Pakistan moved RIGHT (economic growth) and DOWN (reduced burden)
-This is the "peace dividend" of economic development — both countries lowered military burden as GDP grew
-They remain closely matched in burden despite India's larger economy
-
-
-
----
+------------------------------------------------------------------------
 
 ## RQ2: What Spending Patterns Emerge Among Regional Rivals?
 
-
-
-## Armenia-Azerbaijan Deep Dive (Small Multiples Over Time)
+### **Armenia vs. Azerbaijan** 
 
 ```{r}
+
 caucasus_data <- rq1_data |>
   filter(country %in% c("Armenia", "Azerbaijan")) |>
   filter(year >= 1995) |>
@@ -964,27 +859,30 @@ ggplot(caucasus_data, aes(x = year, y = spending_pct, color = country)) +
     panel.grid.minor = element_blank()
   )
 ```
-The subtitle tells the story: both nations increased spending after each escalation.
+
 Three conflicts are marked:
 
-August War (2008): Both countries began steady increases afterward
-April War (2016): A brief spike, especially for Azerbaijan
-44-Day War (2020): The decisive conflict — Azerbaijan's years of investment paid off
+August War (2008): Both countries began steady increases afterward April
+War (2016): A brief spike, especially for Azerbaijan 44-Day War (2020):
+The decisive conflict — Azerbaijan’s years of investment paid off
 
 Key patterns:
 
-1995-2005: Azerbaijan consistently spent more (4% vs 2-3%), funded by emerging oil revenues
-2005-2010: Convergence — both countries ramped up, lines cross around 2008
-2010-2020: Parallel increases, with Azerbaijan maintaining a slight edge
-Post-2020: Armenia increased spending AFTER defeat, while Azerbaijan stabilized — the loser is now scrambling to rebuild
+1995-2005: Azerbaijan consistently spent more (4% vs 2-3%), funded by
+emerging oil revenues 2005-2010: Convergence — both countries ramped up,
+lines cross around 2008 2010-2020: Parallel increases, with Azerbaijan
+maintaining a slight edge Post-2020: Armenia increased spending AFTER
+defeat, while Azerbaijan stabilized — the loser is now scrambling to
+rebuild
 
-The underlying asymmetry: Azerbaijan's oil wealth allowed sustained investment; Armenia, lacking natural resources, could only match this through higher economic sacrifice. The 2020 war outcome reflects this imbalance.
-
-
+The underlying asymmetry: Azerbaijan’s oil wealth allowed sustained
+investment; Armenia, lacking natural resources, could only match this
+through higher economic sacrifice. The 2020 war outcome reflects this
+imbalance.
 
 ### India vs. Pakistan
 
-```{r rq2-india-pakistan}
+```{r}
 library(tidyverse)
 library(scales)
 library(ggrepel)
@@ -1078,29 +976,33 @@ ggplot(india_pakistan, aes(x = year, y = spending_pct, color = country)) +
   )
 ```
 
-Pakistan maintains a higher % of GDP on defense, peaking during the 2001 insurgency.
-This 54-year view reveals a fundamental asymmetry:
+Pakistan maintains a higher % of GDP on defense, peaking during the 2001
+insurgency. This 54-year view reveals a fundamental asymmetry:
 Pakistan's arc:
 
-Peaked at ~7% during the 1980s (Soviet-Afghan war, US military aid)
-"Insurgency Begins" (late 1980s) marks the start of internal conflict burden
-Second peak around 2001 ("Insurgency Peak") — post-9/11, Taliban spillover
-Gradual decline since, now at ~2.7%
+Peaked at \~7% during the 1980s (Soviet-Afghan war, US military aid)
+"Insurgency Begins" (late 1980s) marks the start of internal conflict
+burden Second peak around 2001 ("Insurgency Peak") — post-9/11, Taliban
+spillover Gradual decline since, now at \~2.7%
 
 India's steady decline:
 
-Started around 3.5% in 1970
-Brief spike after 1971 war
-Steady downward trend as economy grew faster than military spending
-Now at ~2.4% — the lowest in this 54-year period
+Started around 3.5% in 1970 Brief spike after 1971 war Steady downward
+trend as economy grew faster than military spending Now at \~2.4% — the
+lowest in this 54-year period
 
 Key events marked:
 
-1971 War: Brief spike for both, previous years military modernisation data is not present. Expected that India spending must have gone up after 1962 war with China. And India Soviet Strategic Partnership for depfence. 
-Kargil War (1999): Barely visible — too short to affect annual spending data
-Balakot Airstrike (2019): No significant spending change — symbolic rather than sustained
+1971 War: Brief spike for both, previous years military modernisation
+data is not present. Expected that India spending must have gone up
+after 1962 war with China. And India Soviet Strategic Partnership for
+depfence. Kargil War (1999): Barely visible — too short to affect annual
+spending data Balakot Airstrike (2019): No significant spending change —
+symbolic rather than sustained
 
-The convergence story: Both countries have reduced burden over time as GDP growth outpaced military spending growth. The gap has narrowed from ~4 percentage points (1980s) to less than 1 point today.
+The convergence story: Both countries have reduced burden over time as
+GDP growth outpaced military spending growth. The gap has narrowed from
+\~4 percentage points (1980s) to less than 1 point today.
 
 ### Saudi Arabia vs. Iran
 
@@ -1122,7 +1024,7 @@ ggplot(saudi_iran, aes(x = year, y = spending_pct, color = country)) +
   scale_y_continuous(labels = label_percent(scale = 1, suffix = "%"),
                      breaks = seq(0, 25, by = 5)) +
   scale_x_continuous(breaks = seq(1970, 2024, by = 10)) +
-  scale_color_manual(values = c("Iran" = "#239F40", "Saudi Arabia" = "#006C35")) +
+  scale_color_manual(values = c("Iran" = "#F2CC8F", "Saudi Arabia" = "#006C35")) +
   labs(
     title = "Saudi Arabia vs. Iran: Military Spending as % of GDP",
     subtitle = "Volatile patterns reflect oil prices and regional conflicts",
@@ -1136,352 +1038,142 @@ ggplot(saudi_iran, aes(x = year, y = spending_pct, color = country)) +
         plot.subtitle = element_text(size = 11, color = "grey40"))
 ```
 
-Volatile patterns reflect oil prices and regional conflicts — but also a fundamental asymmetry.
-This is the most dramatic of the rivalry charts:
+Volatile patterns reflect oil prices and regional conflicts — but also a
+fundamental asymmetry. This is the most dramatic of the rivalry charts:
 Saudi Arabia's rollercoaster:
 
-1970s: Low (~5%), then Islamic Revolution spike
-1980s peak (~19%): Iran-Iraq War fears, oil boom funding
-Gulf War (1990): Another spike to ~14%
-Post-2000 decline: Gradual reduction as threat perception eased
-Arab Spring (2011) + Yemen (2015): Renewed increases
-Current (~7%): Still among the highest burdens globally
+1970s: Low (\~5%), then Islamic Revolution spike 1980s peak (\~19%):
+Iran-Iraq War fears, oil boom funding Gulf War (1990): Another spike to
+\~14% Post-2000 decline: Gradual reduction as threat perception eased
+Arab Spring (2011) + Yemen (2015): Renewed increases Current (\~7%):
+Still among the highest burdens globally
 
 Iran's constrained flatline:
 
-Pre-revolution: Rising with oil wealth
-Islamic Revolution (1979): Peak at ~12% (war with Iraq imminent)
-Post-1990: Collapsed to ~2-3% and stayed there
-Sanctions effect: US economic sanctions have crippled Iran's ability to fund military growth
-Current (~2%): Fraction of Saudi burden despite equal threat perception
+Pre-revolution: Rising with oil wealth Islamic Revolution (1979): Peak
+at \~12% (war with Iraq imminent) Post-1990: Collapsed to \~2-3% and
+stayed there Sanctions effect: US economic sanctions have crippled
+Iran's ability to fund military growth Current (\~2%): Fraction of Saudi
+burden despite equal threat perception
 
-The divergence: Saudi Arabia's spending tracks oil prices and regional threats. Iran's spending is constrained by sanctions and economic isolation — it cannot spend even if it wants to. This is why Saudi Arabia outspends Iran ~10:1 in absolute terms despite similar rhetoric.
+The divergence: Saudi Arabia's spending tracks oil prices and regional
+threats. Iran's spending is constrained by sanctions and economic
+isolation — it cannot spend even if it wants to. This is why Saudi
+Arabia outspends Iran \~10:1 in absolute terms despite similar rhetoric.
 
-### Multiple Rival Pairs Comparison
+## RQ3: How do Global Conflicts Affect Military Expenditure?
 
+```{r}
+if (file.exists("data/clean/rq3_conflicts.rds")) {
+  rq3 <- read_rds("data/clean/rq3_conflicts.rds")
+} else if (file.exists("data/clean/rq3_conflicts.csv")) {
+  rq3 <- read_csv("data/clean/rq3_conflicts.csv", show_col_types = FALSE)
+} else {
+  stop("rq3_conflicts not found. Run Clean_data.R first.")
+}
 
+# Focus on 2000–2024 for recent conflicts
+rq3_recent <- rq3 %>%
+  filter(year >= 2000)
 
+# Define key actors to highlight
+focus_iso3 <- c("UKR", "RUS", "DEU", "FRA", "GBR", "POL", "USA")
 
+rq3_focus <- rq3_recent %>%
+  filter(iso3c %in% focus_iso3)
 
-### Top Arms Importers
+# Compute European average (unweighted mean across European countries)
+europe_avg <- rq3_recent %>%
+  filter(region == "Europe") %>%
+  group_by(year) %>%
+  summarise(
+    spending_pct_gdp = mean(spending_pct_gdp, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(country = "Europe average")
 
+# --------------------------------------------------------------------
+# 2. Build explanatory event-study plot
+# --------------------------------------------------------------------
 
-```{r rq2-arms-imports}
-library(tidyverse)
-library(zoo)
-library(scales)
+gg_rq3 <- ggplot() +
+  # Europe average line
+  geom_line(
+    data = europe_avg,
+    aes(x = year, y = spending_pct_gdp),
+    color = "#1b9e77",
+    linewidth = 1.2
+  ) +
+  # Key countries
+  geom_line(
+    data = rq3_focus,
+    aes(x = year, y = spending_pct_gdp, color = country, group = country),
+    linewidth = 0.9,
+    alpha = 0.9
+  ) +
+  # Conflict markers
+  geom_vline(xintercept = 2014, linetype = "dashed", color = "grey40") +
+  geom_vline(xintercept = 2022, linetype = "dashed", color = "grey40") +
+  annotate(
+    "text",
+    x = 2014, y = Inf, vjust = 1.5,
+    label = "2014: Crimea annexation",
+    angle = 90, size = 3, color = "grey20"
+  ) +
+  annotate(
+    "text",
+    x = 2022, y = Inf, vjust = 1.5,
+    label = "2022: Full-scale invasion",
+    angle = 90, size = 3, color = "grey20"
+  ) +
+  scale_y_continuous(
+    name = "Military expenditure (% of GDP)",
+    labels = scales::number_format(accuracy = 0.1),
+    limits = c(0, 2)
+  ) +
+  scale_x_continuous(
+    name = "Year",
+    breaks = seq(2000, 2024, by = 2)
+  ) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Military spending in Europe around the Russia–Ukraine conflicts",
+    subtitle = "European average (green) vs selected countries, 2000–2024\nDashed lines mark 2014 Crimea annexation and 2022 full-scale invasion",
+    caption = "Source: SIPRI military expenditure (% of GDP) and World Bank / author calculations",
+    color = "Country"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    legend.box = "vertical",
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    panel.grid.minor = element_blank()
+  )
 
-# 1. Force Include Ukraine + Top 8 Others
-# We calculate the top 8 purely by volume, then append Ukraine manually.
-top_others <- rq2_data |>
-  filter(year >= 2014, country != "Ukraine") |>
-  group_by(country) |>
-  summarise(total_imports = sum(arms_imports_tiv, na.rm = TRUE)) |>
-  arrange(desc(total_imports)) |>
-  slice_head(n = 8) |>
-  pull(country)
-
-# Combine them into our final list
-target_countries <- c(top_others, "Ukraine")
-
-# 2. Process Data (With NA Fix)
-arms_plot_data <- rq2_data |>
-  filter(country %in% target_countries, year >= 2000) |>
-  # FIX: Convert NA to 0. If SIPRI has no record, it implies 0 imports.
-  mutate(arms_imports_tiv = replace_na(arms_imports_tiv, 0)) |>
-  arrange(country, year) |>
-  group_by(country) |>
-  # Rolling mean to smooth lines
-  mutate(imports_smooth = rollmean(arms_imports_tiv, k = 3, fill = NA, align = "center")) |>
-  ungroup() |>
-  # Filter out early NAs from rolling calculation but keep the rest
-  filter(!is.na(imports_smooth)) |>
-  mutate(country = factor(country, levels = target_countries))
-
-# 3. Find Peak Years for Labels
-peak_points <- arms_plot_data |>
-  group_by(country) |>
-  filter(imports_smooth == max(imports_smooth)) |>
-  ungroup()
-
-# 4. Define Colors (Ukraine gets High-Vis Yellow/Gold)
-fill_colors <- c(
-  "Ukraine" = "#FFD700",       # Bright Gold
-  "Saudi Arabia" = "#2E8B57",  # Forest Green
-  "India" = "#F4A582",         # Soft Orange
-  "Qatar" = "#807dba",         # Purple
-  "Egypt" = "#e08214",         # Dark Orange
-  "Australia" = "#41b6c4",     # Teal
-  "China" = "#e31a1c",         # Red
-  "Pakistan" = "#2171b5",      # Blue
-  "Japan" = "#8856a7",         # Violet
-  "Korea, South" = "#999999"   # Grey (if they appear)
+ggsave(
+  filename = "figures/rq3_europe_ukraine_event_study.png",
+  plot = gg_rq3,
+  width = 9,
+  height = 5,
+  dpi = 300
 )
 
-# 5. Plot
-ggplot(arms_plot_data, aes(x = year, y = imports_smooth)) +
-  
-  # A. The Area Chart
-  geom_area(aes(fill = country), alpha = 0.85, color = "white", linewidth = 0.2) +
-  
-  # B. Peak Labels
-  geom_point(data = peak_points, size = 1.5) +
-  geom_text(
-    data = peak_points,
-    aes(label = paste0(year, "\nPeak"), y = imports_smooth * 1.35),
-    size = 2.5, fontface = "bold", color = "grey20", lineheight = 0.8
-  ) +
-  
-  # C. Faceting (3x3 Grid)
-  facet_wrap(~country, ncol = 3, scales = "free_y") + # Note: free_y lets Ukraine's shape show even if volume is lower
-  
-  # D. Scales & Theme
-  scale_y_continuous(labels = label_number(scale_cut = cut_short_scale()), n.breaks = 3) +
-  scale_x_continuous(breaks = c(2000, 2010, 2020)) +
-  scale_fill_manual(values = fill_colors) +
-  
-  labs(
-    title = "The Global Arms Buildup: Trends by Country (2000-2024)",
-    subtitle = "Comparing the 'shape' of rearmament. Note Ukraine's sudden vertical spike in 2022.",
-    x = NULL,
-    y = "Arms Imports (TIV Trend Value)",
-    caption = "Source: SIPRI Arms Transfers Database"
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(face = "bold", size = 16),
-    plot.subtitle = element_text(color = "grey40", size = 11, margin = margin(b = 15)),
-    strip.text = element_text(face = "bold", size = 10, hjust = 0),
-    strip.background = element_rect(fill = "grey96", color = NA),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.x = element_blank(),
-    axis.text = element_text(size = 9, color = "grey50")
-  )
+cat("\nSaved RQ3 event-study plot to figures/rq3_europe_ukraine_event_study.png\n")
+
+
+gg_rq3
 ```
 
-This small multiples chart shows arms imports (TIV) for 9 major importers. The shapes tell different stories:
-Gradual buildups:
-
-Saudi Arabia (peak 2016): Steady rise, then plateau — Yemen war procurement
-India (peak 2012): Large sustained importer, recent decline as domestic production improves
-Australia (peak 2018): Steady increase reflecting China concerns
-
-Boom-bust patterns:
-
-Egypt (peak 2017): Sharp spike, then decline — one-time modernization push
-Qatar (peak 2022): Dramatic recent surge — Gulf crisis drove diversification
-South Korea (peak 2007): Early spike, then steady decline
-
-Structural decline:
-
-China (peak 2005): Dramatic collapse in imports as domestic industry matured — China now exports more than it imports
-
-The outlier:
-
-Ukraine (peak 2023): The vertical yellow spike is unlike anything else on this chart. Near-zero imports for 20 years, then an explosion in 2022-2023. This is what wartime emergency procurement looks like — a shape no other country displays.
-
-Pakistan's recent surge (peak 2023): Interesting timing — increased imports coincide with India's relative decline. The arms race continues through procurement, not just spending.
-
------
-
-These six graphs collectively reveal that military rivalries follow predictable patterns, but outcomes depend on resources. Armenia-Azerbaijan and India-Pakistan both show classic arms race dynamics (strong lagged correlations), but Azerbaijan's oil wealth and India's economic growth created asymmetric outcomes. Saudi-Iran isn't a true arms race — sanctions have crippled Iran's ability to compete. And Ukraine's 2022 transformation — from near-zero to record-breaking in every metric — shows what happens when existential war overrides all economic constraints.
-
-### Arms Race Dynamics: Lagged Correlation Analysis
-
-```{r rq2-lag-analysis}
-
-# RQ2: Lagged Correlation Analysis - India vs Pakistan
-
-
-library(tidyverse)
-library(scales)
-
-rq2_data <- read_csv("data/clean/rq2_arms_races.csv")
-
-
-# Data Preparation (using dplyr:: prefix to avoid conflicts)
-
-
-india_data <- rq2_data |>
-  filter(country == "India", year >= 1975) |>
-  filter(!is.na(spending_pct_gdp_sipri)) |>
-  distinct(year, .keep_all = TRUE) |>
-  dplyr::select(year, india_spending = spending_pct_gdp_sipri) |>
-  mutate(india_spending = india_spending * 100)
-
-pakistan_data <- rq2_data |>
-  filter(country == "Pakistan", year >= 1975) |>
-  filter(!is.na(spending_pct_gdp_sipri)) |>
-  distinct(year, .keep_all = TRUE) |>
-  dplyr::select(year, pakistan_spending = spending_pct_gdp_sipri) |>
-  mutate(pakistan_spending = pakistan_spending * 100)
-
-india_pak_lag <- india_data |>
-  inner_join(pakistan_data, by = "year") |>
-  arrange(year) |>
-  mutate(india_lag1 = lag(india_spending, 1)) |>
-  filter(!is.na(india_lag1) & !is.na(pakistan_spending))
-
-# Calculate correlation
-cor_val <- cor(india_pak_lag$india_lag1, india_pak_lag$pakistan_spending)
-
-
-# Create Plot
-
-
-ggplot(india_pak_lag, aes(x = india_lag1, y = pakistan_spending)) +
-  geom_point(aes(color = year), size = 3.5, alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "grey30", linetype = "dashed") +
-  scale_color_viridis_c(name = "Year", option = "plasma") +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
-  labs(
-    title = "Arms Race Dynamics: India-Pakistan Lagged Relationship",
-    subtitle = paste0(
-      "Does India's spending predict Pakistan's next-year response? (r = ",
-      round(cor_val, 2), ")"
-    ),
-    x = "India's Military Spending (% GDP, Previous Year)",
-    y = "Pakistan's Military Spending (% GDP, Current Year)",
-    caption = "Source: SIPRI Military Expenditure Database"
-  ) +
-  theme_grey(16) +
-  theme(
-    plot.title = element_text(face = "bold"),
-    plot.subtitle = element_text(color = "grey40"),
-    legend.position = "right"
-  )
-```
-
-The Key FindingStrong positive correlation (r = 0.71) — When India increases military spending one year, Pakistan tends to increase spending the following year, the relationship is symmeteric in nature. This is statistical evidence of arms race dynamics.
-
-1. Evidence of Reactive Behavior
-
-Pakistan appears to respond to India's military posture
-~50% of Pakistan's spending variation (r² ≈ 0.50) can be explained by India's prior-year spending
-
-2. Temporal Pattern (Color)
-
-Purple/Blue points (1980s): Upper-right area — both countries spent heavily (Cold War era)
-Yellow/Orange points (2010s-2020s): Lower-left area — both reduced burden as economies grew
-The cluster moved DOWN and LEFT over time
-
-3. Pakistan Consistently Spends More
-
-Most points are ABOVE the line where Pakistan would equal India
-Even when India spends ~2.5%, Pakistan spends ~4-6%
-Pakistan maintains higher burden despite smaller econom
-
-
-### Arms Imports by Regional Rivals
-
-```{r}
-
-# RQ2: Lagged Correlation Analysis - Armenia vs Azerbaijan
-
-
-library(tidyverse)
-library(scales)
-
-rq2_data <- read_csv("data/clean/rq2_arms_races.csv")
-
-
-# Data Preparation
-
-
-armenia_data <- rq2_data |>
-  filter(country == "Armenia", year >= 1992) |>
-  filter(!is.na(spending_pct_gdp_sipri)) |>
-  distinct(year, .keep_all = TRUE) |>
-  dplyr::select(year, armenia_spending = spending_pct_gdp_sipri) |>
-  mutate(armenia_spending = armenia_spending * 100)
-
-azerbaijan_data <- rq2_data |>
-  filter(country == "Azerbaijan", year >= 1992) |>
-  filter(!is.na(spending_pct_gdp_sipri)) |>
-  distinct(year, .keep_all = TRUE) |>
-  dplyr::select(year, azerbaijan_spending = spending_pct_gdp_sipri) |>
-  mutate(azerbaijan_spending = azerbaijan_spending * 100)
-
-# Join and create lagged variable (Azerbaijan responds to Armenia)
-arm_aze_lag <- armenia_data |>
-  inner_join(azerbaijan_data, by = "year") |>
-  arrange(year) |>
-  mutate(armenia_lag1 = lag(armenia_spending, 1)) |>
-  filter(!is.na(armenia_lag1) & !is.na(azerbaijan_spending))
-
-# Calculate correlation
-cor_val <- cor(arm_aze_lag$armenia_lag1, arm_aze_lag$azerbaijan_spending)
-
-
-# Create Plot
-
-
-ggplot(arm_aze_lag, aes(x = armenia_lag1, y = azerbaijan_spending)) +
-  geom_point(aes(color = year), size = 3.5, alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "grey30", linetype = "dashed") +
-  scale_color_viridis_c(name = "Year", option = "plasma") +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
-  labs(
-    title = "Arms Race Dynamics: Armenia-Azerbaijan Lagged Relationship",
-    subtitle = paste0(
-      "Does Armenia's spending predict Azerbaijan's next-year response? (r = ",
-      round(cor_val, 2), ")"
-    ),
-    x = "Armenia's Military Spending (% GDP, Previous Year)",
-    y = "Azerbaijan's Military Spending (% GDP, Current Year)",
-    caption = "Source: SIPRI Military Expenditure Database"
-  ) +
-  theme_grey(16) +
-  theme(
-    plot.title = element_text(face = "bold"),
-    plot.subtitle = element_text(color = "grey40"),
-    legend.position = "right"
-  )
-```
-
-
-```{r}
-
-# Reverse: Does Azerbaijan's spending predict Armenia's response?
-
-
-arm_aze_lag_reverse <- armenia_data |>
-  inner_join(azerbaijan_data, by = "year") |>
-  arrange(year) |>
-  mutate(azerbaijan_lag1 = lag(azerbaijan_spending, 1)) |>
-  filter(!is.na(azerbaijan_lag1) & !is.na(armenia_spending))
-
-cor_val_reverse <- cor(arm_aze_lag_reverse$azerbaijan_lag1, 
-                       arm_aze_lag_reverse$armenia_spending)
-
-ggplot(arm_aze_lag_reverse, aes(x = azerbaijan_lag1, y = armenia_spending)) +
-  geom_point(aes(color = year), size = 3.5, alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "grey30", linetype = "dashed") +
-  scale_color_viridis_c(name = "Year", option = "plasma") +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
-  labs(
-    title = "Arms Race Dynamics: Azerbaijan-Armenia Lagged Relationship",
-    subtitle = paste0(
-      "Does Azerbaijan's spending predict Armenia's next-year response? (r = ",
-      round(cor_val_reverse, 2), ")"
-    ),
-    x = "Azerbaijan's Military Spending (% GDP, Previous Year)",
-    y = "Armenia's Military Spending (% GDP, Current Year)",
-    caption = "Source: SIPRI Military Expenditure Database"
-  ) +
-  theme_grey(16) +
-  theme(
-    plot.title = element_text(face = "bold"),
-    plot.subtitle = element_text(color = "grey40"),
-    legend.position = "right"
-  )
-```
-"The stronger lagged correlation when Azerbaijan leads (r = 0.63 vs r = 0.49) suggests an asymmetric arms race where oil-rich Azerbaijan sets the pace and resource-constrained Armenia reactively responds — a dynamic that culminated in Azerbaijan's decisive 2020 military victory."
-
-Yellow points (recent years) in upper-right: Both increased spending before 2020 war
-Armenia's responses are more predictable
-
+The above plot shows how military spending as a share of GDP evolved in
+Europe and key actors around the Russia–Ukraine conflicts. From 2000 to
+the early 2010s, the European average remains low and relatively flat,
+hovering around roughly 2% of GDP or less, with no clear upward trend.
+After the 2014 annexation of Crimea , there is only a modest increase,
+indicating that European governments responded cautiously and slowly in
+budgetary terms. In contrast, following the 2022 full‑scale invasion ,
+both the European average and especially Ukraine’s own spending jump
+sharply, while Russia and major NATO members (Germany, France, the UK,
+Poland, the United States) show visible but more gradual increases. We
+can see increases in global military expenditure, especially from Europe
+after the conflicts present on the graphs.

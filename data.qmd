@@ -101,3 +101,5 @@ p_missing_by_year_var
 ```{r}
 p_missing_by_var
 ```
+
+Our missing value analysis reveals systematic patterns: military spending variables show 43-50% missingness overall, significantly worse than GDP per capita (18%). Temporal patterns are striking—early years exhibit severe gaps (72.7% missing in 1960) that improve dramatically through the 1990s as statistical capacity expanded post-Cold War, stabilizing around 35% by 2000. The 2024 spike to near-100% reflects incomplete recent reporting rather than true unavailability. This missingness is non-random, concentrating among low-income states, authoritarian regimes treating defense budgets as state secrets, and conflict-affected countries lacking statistical agencies. We employ listwise deletion, acknowledging this may bias results toward wealthier, more transparent democracies—a limitation affecting particularly Research Question 1's wealth-spending correlations.
